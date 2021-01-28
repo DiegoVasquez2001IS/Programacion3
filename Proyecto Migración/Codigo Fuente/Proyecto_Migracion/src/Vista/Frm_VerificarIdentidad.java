@@ -112,7 +112,7 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
                 s_apellido = (rs.getString("segundo_apellido"));
                 apellido_cas = (rs.getString("apellido_cas"));
                 E_civil = (rs.getString("E_Civil"));
-                JOptionPane.showMessageDialog(null,"El CUI : " + cui_persona + " Pertenece a: " + p_nombre + " " + s_nombre + " " + p_apellido + " " + s_apellido);
+                JOptionPane.showMessageDialog(null,"El CUI : " + buscar + " Pertenece a: " + p_nombre + " " + s_nombre + " " + p_apellido + " " + s_apellido);
                 
             }else {
                 JOptionPane.showMessageDialog(null, "El CUI no existe, numero invalido");;
