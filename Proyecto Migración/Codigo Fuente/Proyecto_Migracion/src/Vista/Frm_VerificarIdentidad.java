@@ -9,6 +9,7 @@ package Vista;
 import java.sql.DriverManager;
 import javax.swing.JOptionPane;
 import java.sql.*;
+import java.math.BigInteger;
 /**
  *
  * @author Carlos Castillo
@@ -89,20 +90,21 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-    Connection con;
-    char cui_persona, Fecha_nac;
-    String p_nombre="", s_nombre="", t_nombre="", p_apellido="", s_apellido="", apellido_cas="", E_civil="";
+    char Fecha_nac, cui_persona;
+    String p_nombre="", s_nombre="", t_nombre="", p_apellido="", s_apellido="", apellido_cas="", E_civil="", buscar;
     
+    buscar = txtBuscar.getText();
         
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/renap/", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from Persona where cui_persona = ?");
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/renap", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from persona where cui_persona = ?");
             pst.setString(1, txtBuscar.getText().trim());
             
             ResultSet rs = pst.executeQuery();
-            while (rs.next())
+            if (rs.next())
             {
-                cui_persona = (rs.getString("cui_persona").charAt(50));
+                
+                cui_persona = (char) (rs.getLong ("cui_persona"));
                 p_nombre = (rs.getString("primer_nombre"));
                 s_nombre = (rs.getString("segundo_nombre"));
                 t_nombre = (rs.getString("tercer_nombre"));
@@ -110,12 +112,14 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
                 s_apellido = (rs.getString("segundo_apellido"));
                 apellido_cas = (rs.getString("apellido_cas"));
                 E_civil = (rs.getString("E_Civil"));
-                Fecha_nac = (rs.getString("segundo_nombre").charAt(50));
-                JOptionPane.showMessageDialog(null,"El CUI con numero" + cui_persona + "Con el nombre" + p_nombre + s_nombre + p_apellido + s_apellido);
+                JOptionPane.showMessageDialog(null,"El CUI : " + cui_persona + " Pertenece a: " + p_nombre + " " + s_nombre + " " + p_apellido + " " + s_apellido);
+                
+            }else {
+                JOptionPane.showMessageDialog(null, "El CUI no existe, numero invalido");;
             }
             rs.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null,"El CUI no existe!");;
+             
         }
  
     }//GEN-LAST:event_jButton1ActionPerformed
