@@ -5,17 +5,20 @@
  */
 package Vista;
 
+
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
+import java.sql.*;
 /**
  *
- * @author Diego
+ * @author Carlos Castillo
  */
 public class Frm_VerificarIdentidad extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Frm_VerificarIdentidad
-     */
+ 
     public Frm_VerificarIdentidad() {
         initComponents();
+        
     }
 
     /**
@@ -27,21 +30,95 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        txtBuscar = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("Verificar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Ingrese NRO. CUI");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel1)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(54, 54, 54))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    Connection con;
+    char cui_persona, Fecha_nac;
+    String p_nombre="", s_nombre="", t_nombre="", p_apellido="", s_apellido="", apellido_cas="", E_civil="";
+    
+        
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/renap/", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from Persona where cui_persona = ?");
+            pst.setString(1, txtBuscar.getText().trim());
+            
+            ResultSet rs = pst.executeQuery();
+            while (rs.next())
+            {
+                cui_persona = (rs.getString("cui_persona").charAt(50));
+                p_nombre = (rs.getString("primer_nombre"));
+                s_nombre = (rs.getString("segundo_nombre"));
+                t_nombre = (rs.getString("tercer_nombre"));
+                p_apellido = (rs.getString("primer_apellido"));
+                s_apellido = (rs.getString("segundo_apellido"));
+                apellido_cas = (rs.getString("apellido_cas"));
+                E_civil = (rs.getString("E_Civil"));
+                Fecha_nac = (rs.getString("segundo_nombre").charAt(50));
+                JOptionPane.showMessageDialog(null,"El CUI con numero" + cui_persona + "Con el nombre" + p_nombre + s_nombre + p_apellido + s_apellido);
+            }
+            rs.close();
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null,"El CUI no existe!");;
+        }
+ 
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +156,9 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtBuscar;
     // End of variables declaration//GEN-END:variables
 }
