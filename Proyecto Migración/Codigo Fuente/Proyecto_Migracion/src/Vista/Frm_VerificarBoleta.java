@@ -1,8 +1,20 @@
 package Vista;
 
+<<<<<<< HEAD
 import com.formdev.flatlaf.FlatDarkLaf;
 import javax.swing.UIManager;
 
+=======
+import javax.swing.UIManager;
+import com.formdev.flatlaf.FlatLightLaf;
+import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
+
+/**
+ *
+ * @author TagoKG
+ */
+>>>>>>> ca30f1d67e58cb6a2a06f50970ca25f13ceee90c
 public class Frm_VerificarBoleta extends javax.swing.JFrame {
 
     public Frm_VerificarBoleta() {
@@ -104,6 +116,7 @@ public class Frm_VerificarBoleta extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField2ActionPerformed
 
     public static void main(String args[]) {
+<<<<<<< HEAD
         
         try{
             UIManager.setLookAndFeel(new FlatDarkLaf());
@@ -111,6 +124,26 @@ public class Frm_VerificarBoleta extends javax.swing.JFrame {
             System.out.println(e.toString());
         }
         
+=======
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+
+        try {
+            UIManager.setLookAndFeel(new FlatLightLaf());
+        } catch (UnsupportedLookAndFeelException ex) {
+            JOptionPane.showMessageDialog(null, "Error Interfaz Gráfica", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
+        java.awt.EventQueue.invokeLater(() -> {
+            new Frm_VerificarBoleta().setVisible(true);
+        });
+        //</editor-fold>
+
+        /* Create and display the form */
+>>>>>>> ca30f1d67e58cb6a2a06f50970ca25f13ceee90c
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Frm_VerificarBoleta().setVisible(true);
