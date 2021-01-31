@@ -5,17 +5,21 @@
  */
 package Vista;
 
+
+import java.sql.DriverManager;
+import javax.swing.JOptionPane;
+import java.sql.*;
+import java.math.BigInteger;
 /**
  *
- * @author Diego
+ * @author Carlos Castillo
  */
 public class Frm_VerificarIdentidad extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Frm_VerificarIdentidad
-     */
+ 
     public Frm_VerificarIdentidad() {
         initComponents();
+        
     }
 
     /**
@@ -27,6 +31,16 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+
+        jPanel1 = new javax.swing.JPanel();
+        txtBuscar = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jButton1.setText("Verificar");
+
         jButton1 = new javax.swing.JButton();
         jTextField1 = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
@@ -34,11 +48,41 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jButton1.setText("VERIFICAR");
+
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+
+
+        jLabel1.setText("Ingrese NRO. CUI");
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(89, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(72, 72, 72)
+                        .addComponent(jButton1))
+                    .addComponent(jLabel1)
+                    .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(82, 82, 82))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(60, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addGap(18, 18, 18)
+                .addComponent(txtBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(54, 54, 54))
+        );
 
         jTextField1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
@@ -50,11 +94,20 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("DialogInput", 1, 24)); // NOI18N
         jLabel3.setText("Verificar No.CUI:");
 
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(71, 71, 71)
@@ -77,10 +130,46 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
                 .addGap(72, 72, 72)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(104, Short.MAX_VALUE))
+
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    char Fecha_nac, cui_persona;
+    String p_nombre="", s_nombre="", t_nombre="", p_apellido="", s_apellido="", apellido_cas="", E_civil="", buscar;
+    
+    buscar = txtBuscar.getText();
+        
+        try {
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/renap", "root", "");
+            PreparedStatement pst = cn.prepareStatement("select * from persona where cui_persona = ?");
+            pst.setString(1, txtBuscar.getText().trim());
+            
+            ResultSet rs = pst.executeQuery();
+            if (rs.next())
+            {
+                
+                cui_persona = (char) (rs.getLong ("cui_persona"));
+                p_nombre = (rs.getString("primer_nombre"));
+                s_nombre = (rs.getString("segundo_nombre"));
+                t_nombre = (rs.getString("tercer_nombre"));
+                p_apellido = (rs.getString("primer_apellido"));
+                s_apellido = (rs.getString("segundo_apellido"));
+                apellido_cas = (rs.getString("apellido_cas"));
+                E_civil = (rs.getString("E_Civil"));
+                JOptionPane.showMessageDialog(null,"El CUI : " + buscar + " Pertenece a: " + p_nombre + " " + s_nombre + " " + p_apellido + " " + s_apellido);
+                
+            }else {
+                JOptionPane.showMessageDialog(null, "El CUI no existe, numero invalido");;
+            }
+            rs.close();
+        } catch (Exception e) {
+             
+        }
+ 
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -88,6 +177,7 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -127,7 +217,13 @@ public class Frm_VerificarIdentidad extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JTextField txtBuscar;
+
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
+
     // End of variables declaration//GEN-END:variables
 }
