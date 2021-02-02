@@ -1,8 +1,6 @@
 package Modelo;
 
-import Controlador.Citas;
 import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
