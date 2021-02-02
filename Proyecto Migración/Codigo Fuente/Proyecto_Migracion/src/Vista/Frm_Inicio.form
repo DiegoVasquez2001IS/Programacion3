@@ -45,7 +45,7 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace pref="89" max="32767" attributes="0"/>
+              <EmptySpace pref="91" max="32767" attributes="0"/>
               <Component id="JLblTitulo" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -61,7 +61,7 @@
     <Component class="javax.swing.JLabel" name="JLblTitulo">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="24" style="1"/>
+          <Font name="Arial" size="24" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="CITAS MIGRACION"/>
       </Properties>
@@ -69,7 +69,7 @@
     <Component class="javax.swing.JButton" name="JBtnConsultar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="14" style="1"/>
+          <Font name="Arial" size="12" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="SOLICITAR"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
@@ -80,7 +80,7 @@
     <Component class="javax.swing.JButton" name="JBtnSolicitar">
       <Properties>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-          <Font name="Calibri" size="14" style="1"/>
+          <Font name="Arial" size="12" style="1"/>
         </Property>
         <Property name="text" type="java.lang.String" value="CONSULTAR"/>
         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
