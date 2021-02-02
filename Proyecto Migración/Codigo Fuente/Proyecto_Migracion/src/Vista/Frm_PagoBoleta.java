@@ -22,7 +22,7 @@ public class Frm_PagoBoleta extends javax.swing.JFrame {
     
     private final String base = "Banrural01";
     private final String user = "root";
-    private final String password = "1245";
+    private final String password = "informaticdv2016";
     private final String url = "jdbc:mysql://localhost/" + base;
     private Connection con = null;
     /**
@@ -156,7 +156,7 @@ public class Frm_PagoBoleta extends javax.swing.JFrame {
 
     private void GuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_GuardarActionPerformed
              try{
-            java.sql.Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Banrural02", "root", "");
+            java.sql.Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/banrural", "root", "informaticdv2016");
             PreparedStatement pst = cn.prepareStatement("insert into Pboleta values(?,?,?,?,?,?)");
             
            pst.setString(1, "0");
@@ -176,7 +176,7 @@ public class Frm_PagoBoleta extends javax.swing.JFrame {
             
            // label_status.setText("Registro exitoso.");
         }catch (Exception e){
-            JOptionPane.showMessageDialog(null, "boleta registrada.");
+                 System.out.println(e);
         }    
     }//GEN-LAST:event_GuardarActionPerformed
     public Connection getConexion()

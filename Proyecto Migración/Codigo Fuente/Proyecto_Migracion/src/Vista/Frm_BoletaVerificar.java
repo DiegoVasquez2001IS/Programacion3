@@ -19,9 +19,9 @@ import javax.swing.JOptionPane;
  * @author Nay Ale
  */
 public class Frm_BoletaVerificar extends javax.swing.JFrame {
-    private final String base = "Banrural01";
+    private final String base = "banrural";
     private final String user = "root";
-    private final String password = "1245";
+    private final String password = "informaticdv2016";
     private final String url = "jdbc:mysql://localhost/" + base;
     private Connection con = null;
    
@@ -131,8 +131,8 @@ public class Frm_BoletaVerificar extends javax.swing.JFrame {
 
     private void Btn_VerificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_VerificarActionPerformed
        try{
-            java.sql.Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/Banrural01", "root", "");
-            PreparedStatement pst = cn.prepareStatement("select * from boleta where ID = ?");
+            java.sql.Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/banrural", "root", "informaticdv2016");
+            PreparedStatement pst = cn.prepareStatement("select * from boleta where num_boleta = ?");
             pst.setString(1, Jtext_Boleta.getText().trim());
             pst.setString(2, Jtext_Recibo.getText().trim());
             ResultSet rs = pst.executeQuery();
@@ -145,6 +145,7 @@ public class Frm_BoletaVerificar extends javax.swing.JFrame {
             }
 
         }catch (Exception e){
+            System.out.println(e);
         }
        
     }//GEN-LAST:event_Btn_VerificarActionPerformed

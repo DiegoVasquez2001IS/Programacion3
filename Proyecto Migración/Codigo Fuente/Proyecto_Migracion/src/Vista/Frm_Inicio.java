@@ -21,14 +21,14 @@ public class Frm_Inicio extends javax.swing.JFrame {
         setTitle("Citas Migración");
         setResizable(false);
 
-        JLblTitulo.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        JLblTitulo.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         JLblTitulo.setText("CITAS MIGRACION");
 
-        JBtnConsultar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        JBtnConsultar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         JBtnConsultar.setText("SOLICITAR");
         JBtnConsultar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        JBtnSolicitar.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        JBtnSolicitar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         JBtnSolicitar.setText("CONSULTAR");
         JBtnSolicitar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         JBtnSolicitar.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +56,7 @@ public class Frm_Inicio extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addContainerGap(91, Short.MAX_VALUE)
                 .addComponent(JLblTitulo)
                 .addGap(56, 56, 56)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -70,7 +70,9 @@ public class Frm_Inicio extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void JBtnSolicitarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnSolicitarActionPerformed
-        // TODO add your handling code here:
+        Frm_BoletaVerificar frmVerifBoleta = new Frm_BoletaVerificar();
+        frmVerifBoleta.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_JBtnSolicitarActionPerformed
 
     public static void main(String args[]) {
