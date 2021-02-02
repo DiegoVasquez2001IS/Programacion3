@@ -8,7 +8,7 @@ package Vista;
 import com.mysql.jdbc.PreparedStatement;
 import java.sql.*;
 import javax.swing.JOptionPane;
-
+import com.mysql.jdbc.Connection;
 /**
  *
  * @author Diego
@@ -85,7 +85,7 @@ public class Frm_VerifId extends javax.swing.JFrame {
     buscar = txtBuscar.getText();
         
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost:3306/renap", "root", "");
+            Connection cn = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/renap", "root", "informaticdv2016");
             PreparedStatement pst = (PreparedStatement) cn.prepareStatement("select * from persona where cui_persona = ?");
             pst.setString(1, txtBuscar.getText().trim());
             

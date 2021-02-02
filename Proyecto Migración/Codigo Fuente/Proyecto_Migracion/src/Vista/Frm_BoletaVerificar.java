@@ -5,7 +5,7 @@
  */
 package Vista;
 
-import com.sun.jdi.connect.spi.Connection;
+import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
